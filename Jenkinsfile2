@@ -28,14 +28,14 @@ stages{
             parallel{
                 stage ('Deploy to Staging'){
                     steps {
-                        sh "scp -i **/target/webapp.war ec2-user@localhost:/opt/apache-tomcat-9.0.12/webapps"
+                        sh """ cp **/target/webapp.war /opt/apache-tomcat-9.0.12/webapps """
                     }
                 }
 
                 stage ("Deploy to Production"){
                     steps {
                     //    sh "scp -i /home/jenkins/tomcat-demo.pem **/target/*.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat7/webapps"
-                       sh "scp -i **/target/webapp.war ec2-user@localhost:/opt/apache-tomcat-prod/webapps"
+                       sh """ cp  **/target/webapp.war /opt/apache-tomcat-prod/webapps """
                     }
                 }
             }
