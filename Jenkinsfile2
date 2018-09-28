@@ -1,5 +1,3 @@
-def tomcatdev = @${params.tomcat_dev} 
-def tomcatprod = @${params.tomcat_prod} 
 
 pipeline {
     agent any
@@ -8,6 +6,8 @@ pipeline {
          string(name: 'tomcat_dev', defaultValue: '/opt/apache-tomcat-9.0.12', description: 'Staging Server')
          string(name: 'tomcat_prod', defaultValue: '/opt/apache-tomcat-prod', description: 'Production Server')
     }
+    def tomcatdev = @${params.tomcat_dev} 
+    def tomcatprod = @${params.tomcat_prod} 
 
     triggers {
          pollSCM('* * * * *')
